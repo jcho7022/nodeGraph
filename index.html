@@ -130,7 +130,7 @@ d3.json("miserables2.json", function(error, graph) {
 //    .style("stroke-width", function(d) { return 1; })
       .on("click", function (d) {
        if(d.url != null)
-         location.href = d.url;
+         link.href = d.url;
        })
        // fade the node colour if mouseover
        .on('mouseover', function(d){
