@@ -144,7 +144,7 @@ d3.json("miserables2.json", function(error, graph) {
        .on('mouseout', function(d){
             var nodeSelection= d3.select(this).style({opacity:'1.0',})
             tooltip.transition().duration(300).style("opacity", 0);
-       });
+       })
 
   var node = svg.selectAll(".node")
       .data(graph.nodes)
@@ -152,26 +152,21 @@ d3.json("miserables2.json", function(error, graph) {
       .attr("class", "node")
       .attr("r", function(d){ return (d.value == 1)? 20:7 }) //TODO
       .call(force.drag)
-  //   .attr("r", function(d) { return rScale(d.value)})
+    //  .attr("r", function(d) { return rScale(d.value)})
       .style("fill", function(d) { return color(d.group); })
       .on("mouseover", function(d){
-
-
-
+    //  highlight neighborhood links and fade if not when mouse is over a node
         var selectedNode = d3.select(this);
          d3.selectAll(".link").each(function(o){
             var selectedColor =  (o.source.name == d.name || o.target.name == d.name )? "black":"gray";
             var selectedOpacity = (o.source.name == d.name || o.target.name == d.name )? 1: 0.2;
       //      var selectedVisibility = (o.source.name == d.name || o.target.name == d.name )? "visible":"visible";
-
             d3.select(this).style("opacity", selectedOpacity)
                            .style("stroke",selectedColor);
 //                           .style("visibility",selectedVisibility);
 
        });
-
        d3.select(this).attr('r', (d.value == 1)? 23:9).style({opacity:'0.9'}); //TODO
-
 //       if(d.url != null){
 //       tooltipNode.transition().duration(500).style("opacity", .9);
 //       tooltipNode.style("width", d.url.length*7 +"px")
@@ -180,20 +175,18 @@ d3.json("miserables2.json", function(error, graph) {
 //                  .style("top", (d3.event.pageY - 24) + "px");
 //         }
       })
+      //restore all attributes
       .on("mouseout",function(d){
       d3.select(this).attr('r', (d.value == 1)? 20:7).style({opacity:'1'}); //TODO
       d3.selectAll(".link").each(function(o){
          d3.select(this).style("opacity", 1)
                         .style("stroke", "gray")
-                        .style("visibility", "visible");
+    //                    .style("visibility", "visible");
 
     });
-
       if(d.url != null){
       tooltipNode.transition().duration(300).style("opacity", 0);
         }
-
-
       })
       .on("click", function(d) {
         if(d.url != null){
@@ -202,6 +195,7 @@ d3.json("miserables2.json", function(error, graph) {
          }
        });
 
+  // text config
   var text = svg.append("svg:g").selectAll("g")
                  .data(force.nodes())
                  .enter().append("svg:g")
@@ -211,9 +205,8 @@ d3.json("miserables2.json", function(error, graph) {
                  .style("font-size" , function(d){
                     return (d.value == 1) ? "12px"  : "11px"; //TODO
                  });
-  // turn off Grouping
+  // turn off grouping initally
   force.enableGrouping(false);
-
 
   text.append("svg:text")
                  .attr("x", function(d){return (d.value == 1) ? "-50px"  : "-20px"; }) //TODO
@@ -223,7 +216,6 @@ d3.json("miserables2.json", function(error, graph) {
 
   node.append("title")
       .text(function(d) { return d.name; });
-
   force.on("tick", function(e) {
     if (useGroupInABox) {
       force.onTick(e);
@@ -256,8 +248,8 @@ d3.json("miserables2.json", function(error, graph) {
     force.deleteTreemap(svg);
     force.start();
   })
-  .on("click", function(){
+/*  .on("click", function(){
     force.deleteTreemap(svg);
-  })
+  }) */
 });
 </script>
