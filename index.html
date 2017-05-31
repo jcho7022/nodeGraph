@@ -128,9 +128,11 @@ d3.json("miserables2.json", function(error, graph) {
       .attr("class", "link")
       .style("stroke-width", function(d) { return linkScale(d.value) + "px"; }) // TODO
 //    .style("stroke-width", function(d) { return 1; })
-      .on("click", function (d) {
-       if(d.url != null)
-         location.href = d.url;
+      .on("click", function(d) {
+      if(d.url != null){
+        if (d3.event.defaultPrevented) return; // if drag click surpressed
+          location.href = d.url;
+       }
        })
        // fade the node colour if mouseover
        .on('mouseover', function(d){
@@ -144,7 +146,7 @@ d3.json("miserables2.json", function(error, graph) {
        .on('mouseout', function(d){
             var nodeSelection= d3.select(this).style({opacity:'1.0',})
             tooltip.transition().duration(300).style("opacity", 0);
-       })
+       });
 
   var node = svg.selectAll(".node")
       .data(graph.nodes)
