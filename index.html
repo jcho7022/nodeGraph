@@ -128,7 +128,7 @@ d3.json("miserables2.json", function(error, graph) {
       .attr("class", "link")
       .style("stroke-width", function(d) { return linkScale(d.value) + "px"; }) // TODO
 //    .style("stroke-width", function(d) { return 1; })
-      .on("click", function(d) {
+      .on("dblclick", function(d) {
       if(d.url != null){
         if (d3.event.defaultPrevented) return; // if drag click surpressed
           location.href = d.url;
@@ -207,8 +207,6 @@ d3.json("miserables2.json", function(error, graph) {
                  .style("font-size" , function(d){
                     return (d.value == 1) ? "12px"  : "11px"; //TODO
                  });
-  // turn off grouping initally
-  force.enableGrouping(false);
 
   text.append("svg:text")
                  .attr("x", function(d){return (d.value == 1) ? "-50px"  : "-20px"; }) //TODO
@@ -235,9 +233,9 @@ d3.json("miserables2.json", function(error, graph) {
               return "translate(" + d.x + "," + d.y + ")";
               });
   });
+//force.drawTreemap(svg);
 
-  d3.select("#chart").on("mouseenter", function () {
-    force.stop();
+/*    force.stop();
   //useGroupInABox = d3.select("#checkGroupInABox").property("checked");
     force.enableGrouping(true);
     force.drawTreemap(svg);
@@ -250,8 +248,9 @@ d3.json("miserables2.json", function(error, graph) {
     force.deleteTreemap(svg);
     force.start();
   })
-/*  .on("click", function(){
+  .on("click", function(){
     force.deleteTreemap(svg);
   }) */
 });
+
 </script>
