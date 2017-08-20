@@ -63,7 +63,7 @@
     {"name":"Prouvaire","group":8},
     {"name":"Feuilly","group":12},
     {"name":"Courfeyrac","group":12},
-    {"name":"응용항체 및 치료물질 개발 Core Lab","group":12, "url":"http://www.google.ca/search?q=응용항체 및 치료물질 개발 Core Lab", "value":1},
+    {"name":"Core Lab","group":12, "url":"http://www.google.ca/search?q= Core Lab", "value":1},
     {"name":"Bossuet","group":12},
     {"name":"Flow Cytometry Core Lab","group":8, "url":"http://www.google.ca/search?q=Flow Cytometry Core Lab", "value":1},
     {"name":"Grantaire","group":8},
